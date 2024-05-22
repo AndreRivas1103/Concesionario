@@ -1,28 +1,14 @@
-"""This module defines the `Purchase` class, which represents a car purchase in the system.
-
-A `Purchase` instance stores information about a completed car purchase, including:
-* The user who made the purchase (`User` object).
-* The car that was purchased (`Car` object).
-* The payment method used for the purchase (string).
-"""
+"""Este módulo define la clase 'pre-compra', que se representa en el sistema."""
 
 from src.models.user import User
 from src.models.car import Car
 
 class Purchase:
-    """Represents a completed car purchase in the system.
 
-    Attributes:
-        _user (User): The user who made the purchase (a `User` object).
-        _car (Car): The car that was purchased (a `Car` object).
-        _payment_method (str): The payment method used for the purchase
-        (e.g., "cheque", "cash", "transfer", "card").
-    """
-
-    TYPES_CAR: tuple[str] = ('Sport Car', 'Can', 'Sedan')
-    TYPES_RIM: tuple[str] = ('Sport', 'Winter', 'Traditional Street')
-    ENGINE_DISPLACEMENT: tuple[int] = (1500, 2000, 2500)
-    PAY_METHODS: tuple[str] = ("check", "cash", "transfer", "card")
+    TYPES_CAR: tuple[str] = ('Deportivo', 'Camioneta', 'Automovil')
+    TYPES_RIM: tuple[str] = ('Deportivos', 'Invierno', 'Sencillos', 'Fibra de Carbono')
+    ENGINE_DISPLACEMENT: tuple[int] = (1000, 1500, 2000, 2500, 3000, 3500)
+    PAY_METHODS: tuple[str] = ("Cheque", "Efectivo", "Transferencia", "Tarjetas")
     SEDES: tuple[str] = ("Medellín", "Cali", "Bogotá", "Pereira")
 
     def __init__(self, user: User = None, car: Car = None, pay_method: str = None) -> None:
