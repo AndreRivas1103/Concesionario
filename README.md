@@ -1,5 +1,5 @@
 # Sistema de Gestión de Concesionarios de Automóviles
-##Descripción
+## Descripción
 Este sistema permite gestionar solicitudes de pruebas de manejo y compra de vehículos en un concesionario de automóviles.
 
 ## Características
