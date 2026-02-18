@@ -1,28 +1,73 @@
 # Sistema de Gestión de Concesionarios de Automóviles
+
 ## Descripción
-Este sistema permite gestionar solicitudes de pruebas de manejo y compra de vehículos en un concesionario de automóviles.
+
+Aplicación de escritorio para la gestión integral de un concesionario de automóviles. Permite a los clientes registrarse, solicitar pruebas de manejo (test drive) y realizar pre-compra de vehículos, con interfaz gráfica desarrollada en Python (tkinter).
+
+---
+
+## Estructura del proyecto
+
+```
+Concesionario/
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── docs/                    # Documentación adicional
+├── src/
+│   ├── __init__.py
+│   ├── app.py               # Punto de entrada y lógica de la interfaz (tkinter)
+│   ├── db/
+│   │   └── database.py      # Acceso a datos y persistencia
+│   ├── exceptions/
+│   │   ├── base_exception.py
+│   │   ├── db_exceptions.py
+│   │   ├── date_exceptions.py
+│   │   └── diver_test_exceptions.py
+│   ├── models/
+│   │   ├── car.py           # Modelo de vehículo
+│   │   ├── driver_test.py   # Modelo de prueba de manejo
+│   │   ├── purchase.py      # Modelo de pre-compra (tipos, sedes, métodos de pago)
+│   │   └── user.py          # Modelo de usuario
+│   ├── utils/
+│   │   ├── color.py         # Utilidades de color (RGB)
+│   │   └── utils_date.py
+│   └── uml/                 # Diagramas UML del proyecto
+└── .venv/                   # Entorno virtual (no se versiona)
+```
+
+---
 
 ## Características
-### Registro de Usuario:
-El usuario ingresa su número de identificación y se le pregunta si desea programar una prueba de manejo o comprar un vehículo.
 
-### Prueba de Manejo:
-Se muestra un calendario con las fechas y horas disponibles para las pruebas de manejo.
-El usuario selecciona una fecha y hora.
-El sistema verifica la disponibilidad de vehículos para esa fecha y hora.
-Si hay disponibilidad, el usuario ingresa su nombre, número de identificación y se le indica que se dirija al concesionario más cercano.
+### Registro de usuario
 
-### Compra de Vehículo
-El usuario selecciona el tipo de vehículo que desea (automóvil deportivo, camioneta, sedán).
-Selecciona el tipo de llanta (deportiva, de invierno, de calle tradicional).
-Selecciona el color del vehículo (negro, azul, etc.).
-Selecciona la cilindrada del motor (1500, 2000, 2500).
-Selecciona el color interior del vehículo.
-Si desea algún extra, se le indica que se dirija al concesionario.
-Ingresar sus datos personales (nombre, teléfono, cédula).
-Seleccionar el método de pago (cheque, efectivo, transferencia, tarjeta).
-El sistema revisa el inventario de vehículos disponibles para la venta y verifica si el vehículo seleccionado se encuentra disponible.
-Si el vehículo se encuentra disponible, se genera la orden de compra y se le indica al usuario que se dirija al concesionario.
+El cliente ingresa su **nombre** y **número de teléfono**. El sistema valida los datos, comprueba si ya existe el usuario y lo registra o recupera para continuar. Tras el registro, se muestra un menú para elegir entre **Prueba de manejo** o **Pre-compra**.
+
+### Prueba de manejo (Test Drive)
+
+Permite agendar una cita para probar un vehículo en el concesionario:
+
+- **Calendario**: el usuario selecciona la fecha deseada mediante un selector de fechas.
+- **Hora**: elección entre horarios disponibles (08:00 a 13:00).
+- **Tipo de vehículo**: deportivo, camioneta o automóvil.
+- Tras enviar la solicitud, el sistema confirma la cita y se indica al cliente que acuda al concesionario elegido, con al menos 15 minutos de anticipación.
+
+### Compra de vehículo (Pre-compra)
+
+Flujo de pre-compra para configurar el vehículo y la sede:
+
+- **Tipo de vehículo**: Deportivo, Camioneta o Automóvil.
+- **Tipo de llanta**: Deportivos, Invierno, Sencillos o Fibra de Carbono.
+- **Cilindrada del motor**: 1000, 1500, 2000, 2500, 3000 o 3500 cc.
+- **Color exterior**: código RGB (valores R, G, B entre 0 y 255).
+- **Color interior**: mismo criterio de color.
+- **Sede**: Medellín, Cali, Bogotá o Pereira.
+- **Método de pago**: Cheque, Efectivo, Transferencia o Tarjetas.
+
+Al enviar, se genera un resumen con los datos del cliente, vehículo elegido, método de pago y sede. La solicitud se envía al concesionario y se indica al cliente que en 48 horas puede acercarse a la sede seleccionada para recibir asesoría.
+
+---
 
 ## Instalación y Configuración
 
@@ -37,7 +82,7 @@ Si el vehículo se encuentra disponible, se genera la orden de compra y se le in
    ```bash
    sudo apt install python3-venv python3-tk
    ```
-   
+
 2. **Crear entorno virtual**:
    ```bash
    python3 -m venv .venv
